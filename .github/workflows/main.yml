@@ -16,7 +16,7 @@ jobs:
     steps:
       # ✨ 修复 2：升级到 v4，消除 Node 20 弃用警告
       - name: Checkout target repo
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7
 
       # ✨ 修复 3：升级到 v3.9（或更高版本），完美支持 Node 24
       - name: Sync Upstream
