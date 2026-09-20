@@ -20,7 +20,7 @@ jobs:
 
       # ✨ 修复 3：升级到 v3.9（或更高版本），完美支持 Node 24
       - name: Sync Upstream
-        uses: aormsby/Fork-Sync-With-Upstream-action@v3.9
+        uses: aormsby/Fork-Sync-With-Upstream-action@v3.4.3
         with:
           target_repo_token: ${{ secrets.GITHUB_TOKEN }}
           upstream_sync_repo: JustVugg/colibri
