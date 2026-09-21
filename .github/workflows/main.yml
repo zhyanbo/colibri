@@ -18,8 +18,8 @@ jobs:
         uses: actions/checkout@v7
 
       - name: Sync Upstream
-        # 💡 建议按你的注释所说，升级到 v3.9+ 获得更好的新环境支持
-        uses: aormsby/Fork-Sync-With-Upstream-action@v3.9
+        # 💡 建议按你的注释所说，升级到 v3.4+ 获得更好的新环境支持
+        uses: aormsby/Fork-Sync-With-Upstream-action@v3.4.3
         with:
           # ✨ 修复核心：使用刚刚配置的具有 workflow 权限的自定义 PAT
           target_repo_token: ${{ secrets.MY_SYNC_TOKEN }}
