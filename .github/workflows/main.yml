@@ -4,9 +4,10 @@ on:
     - cron: "0 0 * * *"  # 每天 0 点自动同步
   workflow_dispatch:
 
+# 显式授予内容和工作流的写入权限
 permissions:
   contents: write
-  actions: write         # 建议同时保留此声明
+  actions: write
 
 jobs:
   sync_with_upstream:
@@ -14,14 +15,17 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ github.event.repository.fork }}
     steps:
+      # ✨ 关键修复 1：使用最新的 v7 版本，并在 checkout 阶段传入你的自定义 Token
+      # 避免底层 Git 缓存默认受限的凭证，确保后续有权限修改工作流文件
       - name: Checkout target repo
         uses: actions/checkout@v7
+        with:
+          token: ${{ secrets.MY_SYNC_TOKEN }}
 
+      # ✨ 关键修复 2：使用正确的最新版本 v3.4.3 并传入自定义 Token
       - name: Sync Upstream
-        # 💡 建议按你的注释所说，升级到 v3.4+ 获得更好的新环境支持
         uses: aormsby/Fork-Sync-With-Upstream-action@v3.4.3
         with:
-          # ✨ 修复核心：使用刚刚配置的具有 workflow 权限的自定义 PAT
           target_repo_token: ${{ secrets.MY_SYNC_TOKEN }}
           upstream_sync_repo: JustVugg/colibri
           target_sync_branch: main
